@@ -1,0 +1,93 @@
+<div class="hugo-stats-grid">
+  <div class="hugo-stat-card" data-count="40000+">
+    <span class="hugo-stat-icon">📦</span>
+    <span class="hugo-stat-number">0</span>
+    <span class="hugo-stat-label">Sites Built</span>
+  </div>
+  <div class="hugo-stat-card" data-count="300+">
+    <span class="hugo-stat-icon">🎨</span>
+    <span class="hugo-stat-number">0</span>
+    <span class="hugo-stat-label">Themes</span>
+  </div>
+  <div class="hugo-stat-card" data-count="0.7s">
+    <span class="hugo-stat-icon">⚡</span>
+    <span class="hugo-stat-number">0</span>
+    <span class="hugo-stat-label">Build Time</span>
+  </div>
+  <div class="hugo-stat-card" data-count="150+">
+    <span class="hugo-stat-icon">🌍</span>
+    <span class="hugo-stat-number">0</span>
+    <span class="hugo-stat-label">Languages</span>
+  </div>
+</div>
+
+<style>
+.hugo-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.hugo-stat-card {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.hugo-stat-card:hover {
+  border-color: var(--avocado);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(143, 170, 125, 0.15);
+}
+.hugo-stat-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+.hugo-stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--avocado);
+  display: block;
+  font-variant-numeric: tabular-nums;
+}
+.hugo-stat-label { font-size: 0.85rem; color: var(--secondary); margin-top: 0.25rem; display: block; }
+</style>
+
+<script>
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const card = entry.target;
+        const target = card.dataset.count;
+        const numEl = card.querySelector('.hugo-stat-number');
+        if (!numEl.dataset.animated) {
+          numEl.dataset.animated = 'true';
+          if (target.endsWith('+') || target.endsWith('s')) {
+            const val = target.replace(/[+s]/g, '');
+            const isTime = target.endsWith('s');
+            if (isTime) {
+              numEl.textContent = val + 's';
+            } else {
+              let current = 0;
+              const max = parseInt(val.replace(/,/g, ''));
+              const step = Math.ceil(max / 40);
+              const timer = setInterval(() => {
+                current += step;
+                if (current >= max) {
+                  numEl.textContent = target;
+                  clearInterval(timer);
+                } else {
+                  numEl.textContent = current.toLocaleString() + '+';
+                }
+              }, 30);
+            }
+          }
+        }
+        observer.unobserve(card);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.hugo-stat-card').forEach(c => observer.observe(c));
+})();
+</script>

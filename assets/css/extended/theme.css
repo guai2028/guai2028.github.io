@@ -1,0 +1,57 @@
+:root {
+  --avocado: #8FAA7D;
+  --avocado-light: #B5CDA8;
+  --avocado-dark: #6B8460;
+  --avocado-bg: #F4F7F1;
+  --avocado-card: #FFFFFF;
+  --entry: #fff;
+  --primary: #4a5e3e;
+  --secondary: #6B8460;
+  --tertiary: #dce5d6;
+  --content: #3d4a35;
+  --border: #d4e0cc;
+}
+
+[data-theme=dark] {
+  --avocado: #9BB87F;
+  --avocado-light: #7FA06A;
+  --avocado-dark: #B5CDA8;
+  --avocado-bg: #1a1f17;
+  --avocado-card: #232a1f;
+  --primary: #c5dbba;
+  --secondary: #9BB87F;
+  --tertiary: #2d3628;
+  --content: #d4e0cc;
+  --border: #3a4533;
+  --entry: #232a1f;
+}
+
+/* Theme overrides */
+.theme-toggle svg { color: var(--avocado); }
+.logo a { color: var(--avocado); }
+.logo a:hover { color: var(--avocado-dark); }
+.entry { background: var(--entry); border-color: var(--border); }
+.entry:hover { border-color: var(--avocado); box-shadow: 0 0 0 1px var(--avocado-light); }
+.post-title { color: var(--primary); }
+.page-header h1 { color: var(--primary); }
+.menu a { color: var(--secondary); }
+.menu a:hover { color: var(--avocado); }
+.top-link { color: var(--avocado); border-color: var(--avocado); }
+.top-link:hover { background: var(--avocado); color: #fff; }
+.footer { color: var(--secondary); }
+.footer a { color: var(--avocado); }
+.paginav { background: var(--entry); border-color: var(--border); }
+.post-content a { color: var(--avocado-dark); border-bottom-color: var(--avocado-light); }
+.post-content a:hover { color: var(--avocado); }
+.tag a { border-color: var(--border); color: var(--secondary); }
+.tag a:hover { border-color: var(--avocado); color: var(--avocado); background: var(--avocado-bg); }
+.share-buttons a { color: var(--avocado); }
+.breadcrumbs a { color: var(--secondary); }
+.breadcrumbs a:hover { color: var(--avocado); }
+.toc { border-color: var(--border); }
+.toc a:hover { color: var(--avocado); }
+.copy-code { background: var(--entry); color: var(--secondary); border-color: var(--border); }
+.copy-code:hover { background: var(--avocado); color: #fff; border-color: var(--avocado); }
+pre { border-color: var(--border); }
+code { background: var(--tertiary); color: var(--primary); }
+blockquote { border-left-color: var(--avocado); background: var(--avocado-bg); }

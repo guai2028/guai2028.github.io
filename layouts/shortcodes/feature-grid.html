@@ -1,0 +1,60 @@
+{{ $rows := split .Inner "\n" }}
+<div class="hugo-feature-grid">
+  {{ range $rows }}
+    {{ $row := trim . " " }}
+    {{ if ne $row "" }}
+      {{ $cells := split $row "|" }}
+      {{ $icon := trim (index $cells 0 | default "") " \"[]'" }}
+      {{ $title := trim (index $cells 1 | default "") "\"[]'" }}
+      {{ $desc := trim (index $cells 2 | default "") "\"[]'" }}
+      <div class="hugo-feature-card" onclick="this.classList.toggle('expanded')">
+        <div class="hugo-feature-front">
+          <span class="hugo-feature-icon">{{ $icon }}</span>
+          <strong>{{ $title }}</strong>
+        </div>
+        <div class="hugo-feature-back">
+          <p>{{ $desc }}</p>
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+</div>
+
+<style>
+.hugo-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.hugo-feature-card {
+  perspective: 600px;
+  cursor: pointer;
+  min-height: 120px;
+}
+.hugo-feature-front, .hugo-feature-back {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all 0.4s ease;
+  backface-visibility: hidden;
+}
+.hugo-feature-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+.hugo-feature-card.expanded .hugo-feature-front { display: none; }
+.hugo-feature-card:not(.expanded) .hugo-feature-back { display: none; }
+.hugo-feature-icon { font-size: 2rem; }
+.hugo-feature-front strong { color: var(--primary); font-size: 0.95rem; }
+.hugo-feature-back p { color: var(--content); margin: 0; font-size: 0.9rem; line-height: 1.5; }
+.hugo-feature-card:hover .hugo-feature-front {
+  border-color: var(--avocado);
+  box-shadow: 0 4px 16px rgba(143, 170, 125, 0.12);
+}
+</style>
