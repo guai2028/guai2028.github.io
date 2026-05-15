@@ -33,6 +33,23 @@
 /* ===== Full site background ===== */
 body { background: var(--theme); }
 
+/* ===== All entries same size (override PaperMod first-entry) ===== */
+.first-entry {
+  min-height: unset;
+  margin-bottom: var(--gap);
+  padding: var(--gap);
+}
+.first-entry .entry-header h2 {
+  font-size: 24px;
+}
+.first-entry .entry-content {
+  margin: 8px 0;
+  font-size: 14px;
+}
+.first-entry .entry-footer {
+  font-size: 13px;
+}
+
 /* ===== Post cards on homepage ===== */
 .entry {
   background: var(--entry);
